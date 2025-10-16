@@ -1,11 +1,24 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import BaseLayout from "../layouts/BaseLayout.astro";
 ---
+<BaseLayout title="Home">
+  <!-- Hero Section -->
+  <section class="hero" style="background-color: #0a0a0a; color: #fff; text-align: center; padding: 2rem 1rem;">
+    <div class="logo" style="margin-bottom: 1rem;">
+      <img src="/assets/summit-logo.png" alt="Summit Holiday Lighting Logo" style="max-width: 200px;" />
+    </div>
+    <h1 style="font-size: 2.5rem; color: #d4af37;">Summit Holiday Lighting</h1>
+    <p style="font-size: 1.25rem; margin: 0.5rem 0;">Safe, Simple, Stunning</p>
+  </section>
 
-<Layout>
-	<Welcome />
-</Layout>
+  <!-- Hero Image Section -->
+  <section class="hero-image" style="background-color: #0a0a0a; text-align: center; padding: 2rem 1rem;">
+    <img src="/assets/bob-ricca-8V7ItC2M5JU-unsplash.jpg" alt="Decorated House" style="max-width: 100%; border: 5px solid #d4af37; border-radius: 10px;" />
+    <h2 style="font-size: 2rem; color: #d4af37; margin-top: 1rem;">Light Up Your Home Without Lifting a Ladder</h2>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="cta" style="background-color: #0a0a0a; text-align: center; padding: 2rem 1rem;">
+    <a href="/contact" style="background-color: #d4af37; color: #0a0a0a; padding: 1rem 2rem; text-decoration: none; font-size: 1.25rem; border-radius: 5px;">Get a Quote</a>
+  </section>
+</BaseLayout>

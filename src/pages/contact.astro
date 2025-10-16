@@ -1,0 +1,23 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+<BaseLayout title="Contact">
+  <h1>Contact Us</h1>
+  <p>Have questions or want a free estimate? Send us a message below or call us at [Phone Number].</p>
+
+  <form class="contact-form" method="POST" action="/api/contact">
+    <label>
+      Name:
+      <input type="text" name="name" required />
+    </label>
+    <label>
+      Email:
+      <input type="email" name="email" required />
+    </label>
+    <label>
+      Message:
+      <textarea name="message" rows="5" required></textarea>
+    </label>
+    <button type="submit" class="btn-primary">Send Message</button>
+  </form>
+</BaseLayout>
