@@ -1,25 +1,57 @@
 <nav class="navbar">
-  <a href="/">Home</a>
-  <a href="/about">About</a>
-  <a href="/services">Services</a>
-  <a href="/team">Team</a>
-  <a href="/contact">Contact</a>
+  <div class="nav-inner">
+    <a class="brand" href="/">Summit Lighting</a>
+    <div class="links">
+      <a href="/about">About</a>
+      <a href="/services">Services</a>
+      <a href="/team">Team</a>
+      <a href="/contact">Contact</a>
+    </div>
+  </div>
 </nav>
 
 <style>
   .navbar {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    padding: .6rem 0;
+    backdrop-filter: saturate(180%) blur(10px);
+    -webkit-backdrop-filter: saturate(180%) blur(10px);
+    background: linear-gradient(180deg, rgba(10,12,16,.7), rgba(10,12,16,.35));
+    border-bottom: 1px solid var(--color-border);
+  }
+  .nav-inner {
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 0 var(--space-5);
     display: flex;
-    gap: 1.5rem;
-    justify-content: center;
-    padding: 1rem;
-    background: #222;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
   }
-  .navbar a {
-    color: white;
+  .brand {
+    color: var(--color-text);
     text-decoration: none;
-    font-weight: 500;
+    font-weight: 700;
+    letter-spacing: -.01em;
   }
-  .navbar a:hover {
-    color: #00bcd4;
+  .links { display: flex; align-items: center; gap: 1.25rem; }
+  .links a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    font-weight: 600;
+    padding: .4rem .6rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid transparent;
+    transition: background-color .2s ease, color .2s ease, border-color .2s ease;
+  }
+  .links a:hover {
+    color: var(--color-text);
+    background: rgba(255,255,255,.04);
+    border-color: var(--color-border);
+  }
+  @media (max-width: 720px) {
+    .links { gap: .5rem; }
   }
 </style>
