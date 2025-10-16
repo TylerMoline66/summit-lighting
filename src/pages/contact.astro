@@ -2,22 +2,60 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 <BaseLayout title="Contact">
-  <h1>Contact Us</h1>
-  <p>Have questions or want a free estimate? Send us a message below or call us at [Phone Number].</p>
+  <section class="section container">
+    <div class="section-head">
+      <h1>Get in touch</h1>
+      <p class="muted">Have questions or want a free estimate? Send us a message below and we'll get back quickly.</p>
+    </div>
 
-  <form class="contact-form" method="POST" action="/api/contact">
-    <label>
-      Name:
-      <input type="text" name="name" required />
-    </label>
-    <label>
-      Email:
-      <input type="email" name="email" required />
-    </label>
-    <label>
-      Message:
-      <textarea name="message" rows="5" required></textarea>
-    </label>
-    <button type="submit" class="btn-primary">Send Message</button>
-  </form>
+    <div class="form">
+      <form class="form-card" method="POST" action="/api/contact">
+        <div class="form-row two">
+          <div>
+            <label for="name">Name</label>
+            <input id="name" class="input" type="text" name="name" placeholder="Your full name" required />
+          </div>
+          <div>
+            <label for="email">Email</label>
+            <input id="email" class="input" type="email" name="email" placeholder="your@email.com" required />
+          </div>
+        </div>
+        <div class="form-row">
+          <div>
+            <label for="message">Message</label>
+            <textarea id="message" class="textarea" name="message" rows="6" placeholder="Tell us about your home and when you'd like installation..." required></textarea>
+            <p class="helper">✨ We'll respond within 24 hours with a custom quote</p>
+          </div>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">Send Message</button>
+          <a class="btn btn-ghost" href="tel:+1-888-808-7751">📞 Call Us</a>
+        </div>
+      </form>
+    </div>
+
+    <!-- Additional contact info -->
+    <div class="contact-info" style="margin-top: var(--space-8); text-align: center;">
+      <div class="surface" style="padding: var(--space-6); max-width: 600px; margin: 0 auto;">
+        <h3 style="margin-bottom: var(--space-4);">Other ways to reach us</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-4);">
+          <div>
+            <h4 style="color: var(--color-brand); margin-bottom: var(--space-2);">📞 Phone</h4>
+            <p class="muted">Call for immediate assistance</p>
+            <a href="tel:+1-888-808-7751" style="color: var(--color-text); text-decoration: none; font-weight: 600;">+1 (888) 808-7751</a>
+          </div>
+          <div>
+            <h4 style="color: var(--color-brand); margin-bottom: var(--space-2);">📧 Email</h4>
+            <p class="muted">Send us a detailed message</p>
+            <a href="mailto:jarrod.caufield@gmail.com" style="color: var(--color-text); text-decoration: none; font-weight: 600;">jarrod.caufield@gmail.com</a>
+          </div>
+          <div>
+            <h4 style="color: var(--color-brand); margin-bottom: var(--space-2);">⏰ Response Time</h4>
+            <p class="muted">We typically respond within</p>
+            <span style="color: var(--color-text); font-weight: 600;">24 hours</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </BaseLayout>
