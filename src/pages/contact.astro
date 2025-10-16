@@ -5,57 +5,98 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   <section class="section container">
     <div class="section-head">
       <h1>Get in touch</h1>
-      <p class="muted">Have questions or want a free estimate? Send us a message below and we'll get back quickly.</p>
+      <p class="muted">Have questions or want a free estimate? Reach out to us using the contact information below.</p>
     </div>
 
+    <!-- Contact Information Cards -->
+    <div class="contact-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--space-5); margin-bottom: var(--space-8);">
+      <div class="surface" style="padding: var(--space-6); text-align: center;">
+        <h3 style="color: var(--color-brand); margin-bottom: var(--space-3);">📞 Phone</h3>
+        <p class="muted" style="margin-bottom: var(--space-3);">Call for immediate assistance</p>
+        <a href="tel:+1-888-808-7751" style="color: var(--color-text); text-decoration: none; font-weight: 600; font-size: 1.1rem;">+1 (888) 808-7751</a>
+      </div>
+      
+      <div class="surface" style="padding: var(--space-6); text-align: center;">
+        <h3 style="color: var(--color-brand); margin-bottom: var(--space-3);">📧 Email</h3>
+        <p class="muted" style="margin-bottom: var(--space-3);">Send us a detailed message</p>
+        <a href="mailto:jarrod.caufield@gmail.com" style="color: var(--color-text); text-decoration: none; font-weight: 600; font-size: 1.1rem;">jarrod.caufield@gmail.com</a>
+      </div>
+      
+      <div class="surface" style="padding: var(--space-6); text-align: center;">
+        <h3 style="color: var(--color-brand); margin-bottom: var(--space-3);">⏰ Response Time</h3>
+        <p class="muted" style="margin-bottom: var(--space-3);">We typically respond within</p>
+        <span style="color: var(--color-text); font-weight: 600; font-size: 1.1rem;">24 hours</span>
+      </div>
+    </div>
+
+    <!-- Contact Form (Static) -->
     <div class="form">
-      <form class="form-card" method="POST" action="/api/contact">
-        <div class="form-row two">
-          <div>
-            <label for="name">Name</label>
-            <input id="name" class="input" type="text" name="name" placeholder="Your full name" required />
+      <div class="form-card">
+        <h3 style="margin-bottom: var(--space-5); text-align: center;">Send us a message</h3>
+        <p class="muted" style="text-align: center; margin-bottom: var(--space-6);">Fill out the form below and we'll get back to you as soon as possible.</p>
+        
+        <form>
+          <div class="form-row two">
+            <div>
+              <label for="name">Name</label>
+              <input id="name" class="input" type="text" name="name" placeholder="Your full name" required />
+            </div>
+            <div>
+              <label for="email">Email</label>
+              <input id="email" class="input" type="email" name="email" placeholder="your@email.com" required />
+            </div>
           </div>
-          <div>
-            <label for="email">Email</label>
-            <input id="email" class="input" type="email" name="email" placeholder="your@email.com" required />
+          <div class="form-row">
+            <div>
+              <label for="phone">Phone (Optional)</label>
+              <input id="phone" class="input" type="tel" name="phone" placeholder="(555) 123-4567" />
+            </div>
           </div>
-        </div>
-        <div class="form-row">
-          <div>
-            <label for="message">Message</label>
-            <textarea id="message" class="textarea" name="message" rows="6" placeholder="Tell us about your home and when you'd like installation..." required></textarea>
-            <p class="helper">✨ We'll respond within 24 hours with a custom quote</p>
+          <div class="form-row">
+            <div>
+              <label for="message">Message</label>
+              <textarea id="message" class="textarea" name="message" rows="6" placeholder="Tell us about your home and when you'd like installation..." required></textarea>
+              <p class="helper">✨ We'll respond within 24 hours with a custom quote</p>
+            </div>
           </div>
-        </div>
-        <div class="form-actions">
-          <button type="submit" class="btn btn-primary">Send Message</button>
-          <a class="btn btn-ghost" href="tel:+1-888-808-7751">📞 Call Us</a>
-        </div>
-      </form>
-    </div>
-
-    <!-- Additional contact info -->
-    <div class="contact-info" style="margin-top: var(--space-8); text-align: center;">
-      <div class="surface" style="padding: var(--space-6); max-width: 600px; margin: 0 auto;">
-        <h3 style="margin-bottom: var(--space-4);">Other ways to reach us</h3>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-4);">
-          <div>
-            <h4 style="color: var(--color-brand); margin-bottom: var(--space-2);">📞 Phone</h4>
-            <p class="muted">Call for immediate assistance</p>
-            <a href="tel:+1-888-808-7751" style="color: var(--color-text); text-decoration: none; font-weight: 600;">+1 (888) 808-7751</a>
+          <div class="form-actions">
+            <button type="button" class="btn btn-primary" onclick="copyFormData()">Copy Message</button>
+            <a class="btn btn-ghost" href="mailto:jarrod.caufield@gmail.com?subject=Holiday Lighting Inquiry">📧 Send Email</a>
           </div>
-          <div>
-            <h4 style="color: var(--color-brand); margin-bottom: var(--space-2);">📧 Email</h4>
-            <p class="muted">Send us a detailed message</p>
-            <a href="mailto:jarrod.caufield@gmail.com" style="color: var(--color-text); text-decoration: none; font-weight: 600;">jarrod.caufield@gmail.com</a>
-          </div>
-          <div>
-            <h4 style="color: var(--color-brand); margin-bottom: var(--space-2);">⏰ Response Time</h4>
-            <p class="muted">We typically respond within</p>
-            <span style="color: var(--color-text); font-weight: 600;">24 hours</span>
-          </div>
-        </div>
+        </form>
       </div>
     </div>
   </section>
 </BaseLayout>
+
+<script>
+  function copyFormData() {
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const phone = document.getElementById('phone').value;
+    const message = document.getElementById('message').value;
+    
+    if (!name || !email || !message) {
+      alert('Please fill in the required fields (Name, Email, Message)');
+      return;
+    }
+    
+    const formData = `Name: ${name}
+Email: ${email}
+Phone: ${phone || 'Not provided'}
+Message: ${message}`;
+    
+    navigator.clipboard.writeText(formData).then(() => {
+      alert('Message copied to clipboard! You can now paste it into your email client.');
+    }).catch(() => {
+      // Fallback for older browsers
+      const textArea = document.createElement('textarea');
+      textArea.value = formData;
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textArea);
+      alert('Message copied to clipboard! You can now paste it into your email client.');
+    });
+  }
+</script>
