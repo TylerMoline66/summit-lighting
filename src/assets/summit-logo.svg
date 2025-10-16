@@ -1,0 +1,33 @@
+<svg width="200" height="80" viewBox="0 0 200 80" xmlns="http://www.w3.org/2000/svg">
+  <!-- Dark blue background -->
+  <rect width="200" height="80" fill="#1a2332"/>
+  
+  <!-- Mountain peak graphic -->
+  <g transform="translate(100, 20)">
+    <!-- Mountain triangles -->
+    <path d="M-15,15 L0,-10 L15,15 Z" fill="#d4af37" stroke="#d4af37" stroke-width="0.5"/>
+    
+    <!-- House at base of mountain -->
+    <rect x="-8" y="8" width="16" height="8" fill="#d4af37" stroke="#d4af37" stroke-width="0.5"/>
+    <!-- House windows -->
+    <rect x="-6" y="10" width="3" height="3" fill="#1a2332"/>
+    <rect x="3" y="10" width="3" height="3" fill="#1a2332"/>
+    
+    <!-- Star/sparkle on peak -->
+    <g transform="translate(0, -12)">
+      <path d="M0,-6 L1.5,-1.5 L6,0 L1.5,1.5 L0,6 L-1.5,1.5 L-6,0 L-1.5,-1.5 Z" fill="#d4af37"/>
+    </g>
+  </g>
+  
+  <!-- SUMMIT text -->
+  <text x="100" y="45" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#d4af37">SUMMIT</text>
+  
+  <!-- HOLIDAY LIGHTING text -->
+  <text x="100" y="58" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="normal" fill="#d4af37">HOLIDAY LIGHTING</text>
+  
+  <!-- Horizontal line -->
+  <line x1="60" y1="62" x2="140" y2="62" stroke="#d4af37" stroke-width="0.5"/>
+  
+  <!-- Tagline: SAFE. SIMPLE. STUNNING. -->
+  <text x="100" y="72" text-anchor="middle" font-family="Arial, sans-serif" font-size="7" font-weight="normal" fill="#d4af37">SAFE. SIMPLE. STUNNING.</text>
+</svg>
