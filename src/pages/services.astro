@@ -1,7 +1,5 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import wreathsImage from "../assets/wreaths.jpg";
-import maintenanceImage from "../assets/maintenance.jpg";
 ---
 <BaseLayout title="Services">
   <h1>Services We Offer</h1>
@@ -13,19 +11,58 @@ import maintenanceImage from "../assets/maintenance.jpg";
     <a class="btn-primary" href="/contact">Get Estimate</a>
   </section>
 
-  <!-- Other services -->
-  <section class="other-services">
-    <h2>More Services</h2>
-    <div class="grid">
+  <!-- Service Gallery -->
+  <section class="service-gallery">
+    <h2>Our Work in Action</h2>
+    <div class="grid grid-auto">
       <div class="card">
-        <img src={wreathsImage} alt="Wreaths & Garland" />
-        <h3>Wreaths & Garland</h3>
-        <p>Custom decorations to match your style.</p>
+        <img src="/services-1.jpeg" alt="Custom Roofline Lighting" />
+        <div class="content">
+          <h3>Custom Roofline Lighting</h3>
+          <p>Perfectly fitted lights that follow your home's architecture.</p>
+        </div>
       </div>
       <div class="card">
-        <img src={maintenanceImage} alt="Maintenance" />
-        <h3>Maintenance & Repairs</h3>
-        <p>Ensuring your lights stay perfect all season.</p>
+        <img src="/services-2.jpeg" alt="Landscape Accent Lighting" />
+        <div class="content">
+          <h3>Landscape Accent Lighting</h3>
+          <p>Highlight trees, shrubs, and garden features beautifully.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="/services-4.jpeg" alt="Commercial Grade Displays" />
+        <div class="content">
+          <h3>Commercial Grade Displays</h3>
+          <p>Professional installations for businesses and large properties.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="/services-5.jpeg" alt="Complete Home Packages" />
+        <div class="content">
+          <h3>Complete Home Packages</h3>
+          <p>Full-service lighting solutions for your entire property.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Other services -->
+  <section class="other-services">
+    <h2>Additional Services</h2>
+    <div class="grid">
+      <div class="card">
+        <img src="/services-1.jpeg" alt="Wreaths & Garland" />
+        <div class="content">
+          <h3>Wreaths & Garland</h3>
+          <p>Custom decorations to match your style.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="/services-2.jpeg" alt="Maintenance" />
+        <div class="content">
+          <h3>Maintenance & Repairs</h3>
+          <p>Ensuring your lights stay perfect all season.</p>
+        </div>
       </div>
     </div>
   </section>
