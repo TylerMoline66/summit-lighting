@@ -1,5 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import wreathsImage from "../assets/wreaths.jpg";
+import maintenanceImage from "../assets/maintenance.jpg";
 ---
 <BaseLayout title="Services">
   <h1>Services We Offer</h1>
@@ -16,12 +18,12 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     <h2>More Services</h2>
     <div class="grid">
       <div class="card">
-        <img src="/images/wreaths.jpg" alt="Wreaths & Garland" />
+        <img src={wreathsImage} alt="Wreaths & Garland" />
         <h3>Wreaths & Garland</h3>
         <p>Custom decorations to match your style.</p>
       </div>
       <div class="card">
-        <img src="/images/maintenance.jpg" alt="Maintenance" />
+        <img src={maintenanceImage} alt="Maintenance" />
         <h3>Maintenance & Repairs</h3>
         <p>Ensuring your lights stay perfect all season.</p>
       </div>

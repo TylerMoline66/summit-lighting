@@ -1,7 +1,10 @@
+---
+import logoBasic from "../assets/logo-basic.png";
+---
 <nav class="navbar">
   <div class="nav-inner">
     <a class="brand" href="/">
-      <img src="/src/assets/summit-logo.png" alt="Summit Holiday Lighting" class="logo" />
+      <img src={logoBasic} alt="Summit Holiday Lighting" class="logo" />
       <span class="brand-text">Summit Lighting</span>
     </a>
     
@@ -103,7 +106,7 @@
     padding: 0.6rem 0;
     backdrop-filter: saturate(180%) blur(10px);
     -webkit-backdrop-filter: saturate(180%) blur(10px);
-    background: linear-gradient(180deg, rgba(10, 12, 16, 0.7), rgba(10, 12, 16, 0.35));
+    background: linear-gradient(180deg, rgba(12, 26, 43, 0.9), rgba(12, 26, 43, 0.7));
     border-bottom: 1px solid var(--color-border);
   }
   .nav-inner {
@@ -224,9 +227,9 @@
   }
   .mobile-menu-content {
     background: linear-gradient(135deg, 
-      rgba(16, 18, 24, 0.95) 0%, 
-      rgba(20, 25, 34, 0.95) 100%);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+      rgba(12, 26, 43, 0.95) 0%, 
+      rgba(26, 42, 58, 0.95) 100%);
+    border: 1px solid rgba(201, 162, 74, 0.2);
     border-radius: var(--radius-lg);
     padding: var(--space-6);
     display: flex;

@@ -1,16 +1,18 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import aliceImage from "../assets/team/alice.jpg";
+import bobImage from "../assets/team/bob.jpg";
 ---
 <BaseLayout title="Our Team">
   <h1>Meet The Team</h1>
   <div class="team-grid">
     <div class="member-card">
-      <img src="/images/team/alice.jpg" alt="Alice" />
+      <img src={aliceImage} alt="Alice" />
       <h3>Alice Johnson</h3>
       <p>Founder & Lead Designer</p>
     </div>
     <div class="member-card">
-      <img src="/images/team/bob.jpg" alt="Bob" />
+      <img src={bobImage} alt="Bob" />
       <h3>Bob Smith</h3>
       <p>Operations Manager</p>
     </div>
