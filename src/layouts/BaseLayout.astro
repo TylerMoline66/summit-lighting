@@ -22,3 +22,35 @@ const { title = "My Website" } = Astro.props;
   </body>
 </html>
 
+<script>
+  // Scroll-triggered animations
+  function initScrollAnimations() {
+    const animatedElements = document.querySelectorAll('.animate-on-scroll');
+    
+    if (animatedElements.length === 0) return;
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          // Remove observer after animation to improve performance
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    });
+    
+    animatedElements.forEach((element) => {
+      observer.observe(element);
+    });
+  }
+  
+  // Initialize animations when DOM is loaded
+  document.addEventListener('DOMContentLoaded', initScrollAnimations);
+  
+  // Re-initialize on page navigation (for SPA-like behavior)
+  document.addEventListener('astro:page-load', initScrollAnimations);
+</script>
+

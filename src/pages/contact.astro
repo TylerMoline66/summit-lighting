@@ -32,8 +32,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     <!-- Contact Form (Static) -->
     <div class="form">
       <div class="form-card">
-        <h3 style="margin-bottom: var(--space-5); text-align: center;">Send us a message</h3>
-        <p class="muted" style="text-align: center; margin-bottom: var(--space-6);">Fill out the form below and we'll get back to you as soon as possible.</p>
+        <h3 style="margin-bottom: var(--space-5); text-align: center;">Get your free custom estimate</h3>
+        <p class="muted" style="text-align: center; margin-bottom: var(--space-4);">Your estimate is 100% free and comes with no obligation.</p>
+        <p class="muted" style="text-align: center; margin-bottom: var(--space-6);">Fill out the form below and we'll get back to you within 24 hours.</p>
         
         <form>
           <div class="form-row two">
@@ -48,14 +49,20 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           </div>
           <div class="form-row">
             <div>
-              <label for="phone">Phone (Optional)</label>
+              <label for="phone">Phone</label>
               <input id="phone" class="input" type="tel" name="phone" placeholder="(555) 123-4567" />
             </div>
           </div>
           <div class="form-row">
             <div>
-              <label for="message">Message</label>
-              <textarea id="message" class="textarea" name="message" rows="6" placeholder="Tell us about your home and when you'd like installation..." required></textarea>
+              <label for="address">Property Address (Optional)</label>
+              <input id="address" class="input" type="text" name="address" placeholder="123 Main St, City, State" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div>
+              <label for="message">Tell us about your home</label>
+              <textarea id="message" class="textarea" name="message" rows="4" placeholder="Brief description of your home and lighting preferences..." required></textarea>
               <p class="helper">✨ We'll respond within 24 hours with a custom quote</p>
             </div>
           </div>
@@ -74,18 +81,20 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
     const phone = document.getElementById('phone').value;
+    const address = document.getElementById('address').value;
     const message = document.getElementById('message').value;
-    
+
     if (!name || !email || !message) {
       alert('Please fill in the required fields (Name, Email, Message)');
       return;
     }
-    
+
     const formData = `Name: ${name}
 Email: ${email}
 Phone: ${phone || 'Not provided'}
+Address: ${address || 'Not provided'}
 Message: ${message}`;
-    
+
     navigator.clipboard.writeText(formData).then(() => {
       alert('Message copied to clipboard! You can now paste it into your email client.');
     }).catch(() => {
