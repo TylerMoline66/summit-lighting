@@ -28,18 +28,6 @@
   --color-text-muted: #b8c5d1;
   --color-border: var(--evergreen-shadow);
 
-  /* Accent color variations for more vibrancy */
-  --accent-warm: var(--warm-amber-glow);
-  --accent-star: var(--star-light);
-  --accent-snow: var(--snow-drift);
-  --accent-evergreen: var(--evergreen-shadow);
-  
-  /* Gradient combinations */
-  --gradient-warm: linear-gradient(135deg, var(--warm-amber-glow), var(--star-light));
-  --gradient-gold: linear-gradient(135deg, var(--summit-gold), var(--star-light));
-  --gradient-surface: linear-gradient(135deg, var(--color-surface), var(--color-surface-2));
-  --gradient-accent: linear-gradient(135deg, var(--evergreen-shadow), var(--warm-amber-glow));
-
   --radius-sm: 8px;
   --radius-md: 12px;
   --radius-lg: 16px;
@@ -185,11 +173,6 @@ p {
   font-weight: 700;
   font-size: clamp(2.5rem, 5vw, 4rem);
   line-height: 1.1;
-  background: var(--gradient-gold);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow: 0 0 30px rgba(201, 162, 74, 0.3);
 }
 .hero-content p {
   margin: 0 auto var(--space-7);
@@ -277,39 +260,12 @@ p {
   overflow: hidden;
   box-shadow: var(--shadow-sm);
   text-align: left;
-  position: relative;
-  transition: all 0.3s ease;
 }
-
-.card::before,
-.member-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: var(--gradient-accent);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.card:hover::before,
-.member-card:hover::before {
-  opacity: 1;
-}
-.card img {
+.card img,
+.member-card img {
   width: 100%;
   height: auto;
   display: block;
-}
-
-.member-card img {
-  width: 50%;
-  height: auto;
-  display: block;
-  margin: 0 auto;
-  border-radius: var(--radius-md);
 }
 .card .content,
 .member-card .content {
@@ -344,27 +300,6 @@ p {
 }
 .section-head {
   margin-bottom: var(--space-5);
-  text-align: center;
-  position: relative;
-}
-
-.section-head::before {
-  content: "";
-  position: absolute;
-  top: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60px;
-  height: 4px;
-  background: var(--gradient-warm);
-  border-radius: 2px;
-}
-
-.section-head h2 {
-  background: var(--gradient-gold);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
 .section-head p {
   max-width: 70ch;
@@ -374,24 +309,8 @@ p {
 .testimonials blockquote {
   margin: var(--space-6) 0;
   font-style: italic;
-  border-left: 4px solid var(--accent-warm);
+  border-left: 4px solid var(--color-brand);
   padding-left: var(--space-4);
-  background: var(--gradient-surface);
-  border-radius: var(--radius-md);
-  padding: var(--space-6);
-  position: relative;
-  box-shadow: var(--shadow-sm);
-}
-
-.testimonials blockquote::before {
-  content: """;
-  position: absolute;
-  top: -10px;
-  left: 20px;
-  font-size: 4rem;
-  color: var(--accent-star);
-  opacity: 0.3;
-  font-family: serif;
 }
 
 /* CTA band */
@@ -644,18 +563,6 @@ p {
   backdrop-filter: blur(20px);
   border-bottom: 1px solid rgba(201, 162, 74, 0.2);
   padding: var(--space-4) 0;
-  position: relative;
-}
-
-.navbar::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: var(--gradient-warm);
-  opacity: 0.6;
 }
 
 .nav-inner {
@@ -1071,34 +978,11 @@ p {
   animation: fadeInUp 0.6s ease-out forwards;
 }
 
-/* Initially hidden elements - NO animation until in-view */
+/* Initially hidden elements */
 .animate-on-scroll {
   opacity: 0;
   transform: translateY(30px);
   transition: all 0.6s ease-out;
-}
-
-/* Animation classes only work when in-view */
-.animate-on-scroll.in-view.animate-slide-left {
-  animation: slideInFromLeft 0.6s ease-out forwards;
-}
-
-.animate-on-scroll.in-view.animate-slide-right {
-  animation: slideInFromRight 0.6s ease-out forwards;
-}
-
-.animate-on-scroll.in-view.animate-slide-bottom {
-  animation: slideInFromBottom 0.6s ease-out forwards;
-}
-
-.animate-on-scroll.in-view.animate-fade-up {
-  animation: fadeInUp 0.6s ease-out forwards;
-}
-
-/* Default animation for elements without specific animation class */
-.animate-on-scroll.in-view {
-  opacity: 1;
-  transform: translateY(0);
 }
 
 /* Mobile-specific animation behavior */
@@ -1109,32 +993,38 @@ p {
     transition: all 0.8s ease-out;
   }
 
-  .animate-on-scroll.in-view.animate-slide-left {
+  .animate-on-scroll.animate-slide-left {
     transform: translateX(-50px);
-    animation: slideInFromLeft 0.8s ease-out forwards;
   }
 
-  .animate-on-scroll.in-view.animate-slide-right {
+  .animate-on-scroll.animate-slide-right {
     transform: translateX(50px);
-    animation: slideInFromRight 0.8s ease-out forwards;
   }
 
-  .animate-on-scroll.in-view.animate-slide-bottom {
+  .animate-on-scroll.animate-slide-bottom {
     transform: translateY(40px);
-    animation: slideInFromBottom 0.8s ease-out forwards;
   }
 
-  .animate-on-scroll.in-view.animate-fade-up {
+  .animate-on-scroll.animate-fade-up {
     transform: translateY(25px);
-    animation: fadeInUp 0.8s ease-out forwards;
-  }
-
-  .animate-on-scroll.in-view {
-    opacity: 1;
-    transform: translateY(0);
   }
 }
 
+.animate-on-scroll.animate-slide-left {
+  transform: translateX(-50px);
+}
+
+.animate-on-scroll.animate-slide-right {
+  transform: translateX(50px);
+}
+
+.animate-on-scroll.animate-slide-bottom {
+  transform: translateY(30px);
+}
+
+.animate-on-scroll.animate-fade-up {
+  transform: translateY(20px);
+}
 
 /* When element comes into view */
 .animate-on-scroll.in-view {
@@ -1237,24 +1127,6 @@ blockquote.animate-on-scroll.in-view:hover {
   transition: all 0.3s ease;
   border-radius: var(--radius-md);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  position: relative;
-  overflow: hidden;
-}
-
-.faq-question::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: var(--gradient-warm);
-  opacity: 0.1;
-  transition: left 0.3s ease;
-}
-
-.faq-question:hover::before {
-  left: 0;
 }
 
 .faq-question:hover {

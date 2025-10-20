@@ -129,26 +129,71 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     </div>
   </section>
 
-  <!-- Pricing Overview -->
+  <!-- FAQ Section -->
   <section class="section container">
-    <div class="surface animate-on-scroll animate-fade-up" style="padding: var(--space-6);">
-      <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-6);">
-        <div class="animate-on-scroll animate-slide-left">
-          <h3>First year</h3>
-          <p class="muted">Includes purchase of premium lights, custom design, professional installation, and takedown. Pricing varies by home and design complexity.</p>
-        </div>
-        <div class="animate-on-scroll animate-slide-bottom">
-          <h3>Second year and beyond</h3>
-          <p class="muted">You already own the lights—pay only for installation and takedown. Add new products anytime to enhance your display.</p>
-        </div>
-        <div class="animate-on-scroll animate-slide-right">
-          <h3>Satisfaction Guarantee</h3>
-          <p class="muted">We stand behind our work with a 100% satisfaction guarantee. If you're not completely thrilled with your display, we'll make it right or provide a full refund.</p>
+    <div class="section-head animate-on-scroll animate-fade-up">
+      <h2>Frequently Asked Questions</h2>
+      <p class="muted">Everything you need to know about our holiday lighting services.</p>
+    </div>
+    <div class="faq-container">
+      <div class="faq-item animate-on-scroll animate-slide-left">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          <span>How much does holiday lighting installation cost?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Pricing varies based on your home size, design complexity, and specific requirements. We provide free custom estimates with no obligation. Contact us for a personalized quote that fits your budget.</p>
         </div>
       </div>
-      <div class="animate-on-scroll animate-fade-up" style="margin-top: var(--space-5); display:flex; gap:.75rem; flex-wrap:wrap;">
-        <a class="btn btn-primary" href="/contact">Get your free custom estimate</a>
-        <a class="btn btn-ghost" href="/about">Learn More</a>
+      
+      <div class="faq-item animate-on-scroll animate-slide-right">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          <span>When should I book my holiday lighting installation?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>We recommend booking as early as possible, ideally by October. Early bookings ensure priority scheduling and the best selection of lighting options. We offer flexible scheduling to accommodate your timeline.</p>
+        </div>
+      </div>
+      
+      <div class="faq-item animate-on-scroll animate-slide-left">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          <span>Do you provide maintenance during the season?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Yes! We offer mid-season maintenance checks to replace any burnt-out bulbs or fix fallen strands. Our fast response times ensure your display stays perfect throughout the holiday season.</p>
+        </div>
+      </div>
+      
+      <div class="faq-item animate-on-scroll animate-slide-right">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          <span>What happens to the lights after the holidays?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>We handle complete takedown and organized storage. Your lights are labeled and stored properly so next year's setup is quick and efficient. We also offer optional off-site storage.</p>
+        </div>
+      </div>
+      
+      <div class="faq-item animate-on-scroll animate-slide-left">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          <span>Do you offer permanent lighting solutions?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Yes! We offer year-round color-changing LED systems that are app-controlled. Perfect for holidays, parties, or accent lighting. Professional installation with hidden wiring for a clean look.</p>
+        </div>
+      </div>
+      
+      <div class="faq-item animate-on-scroll animate-slide-right">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          <span>What's included in your satisfaction guarantee?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>We stand behind our work with a 100% satisfaction guarantee. If you're not completely thrilled with your display, we'll make it right or provide a full refund. Your satisfaction is our priority.</p>
+        </div>
       </div>
     </div>
   </section>

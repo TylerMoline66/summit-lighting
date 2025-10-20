@@ -23,34 +23,67 @@ const { title = "My Website" } = Astro.props;
 </html>
 
 <script>
-  // Scroll-triggered animations
+  // Scroll-triggered animations using IntersectionObserver
   function initScrollAnimations() {
     const animatedElements = document.querySelectorAll('.animate-on-scroll');
     
     if (animatedElements.length === 0) return;
     
+    // Create intersection observer
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('in-view');
-          // Remove observer after animation to improve performance
+          // Add a small delay for staggered effect
+          const delay = Array.from(animatedElements).indexOf(entry.target) * 100;
+          setTimeout(() => {
+            entry.target.classList.add('in-view');
+          }, delay);
+          
+          // Stop observing this element once it's animated
           observer.unobserve(entry.target);
         }
       });
     }, {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
+      // Trigger when element is 20% visible
+      threshold: 0.2,
+      // Start animation when element is 50px from viewport
+      rootMargin: '50px 0px -50px 0px'
     });
     
+    // Start observing all animated elements
     animatedElements.forEach((element) => {
       observer.observe(element);
     });
   }
   
   // Initialize animations when DOM is loaded
-  document.addEventListener('DOMContentLoaded', initScrollAnimations);
+  document.addEventListener('DOMContentLoaded', () => {
+    initScrollAnimations();
+  });
   
   // Re-initialize on page navigation (for SPA-like behavior)
-  document.addEventListener('astro:page-load', initScrollAnimations);
+  document.addEventListener('astro:page-load', () => {
+    initScrollAnimations();
+  });
+  
+  // FAQ Toggle Function
+  window.toggleFAQ = function(button) {
+    const faqItem = button.closest('.faq-item');
+    const isActive = faqItem.classList.contains('active');
+    
+    // Close all other FAQ items
+    document.querySelectorAll('.faq-item').forEach(item => {
+      if (item !== faqItem) {
+        item.classList.remove('active');
+      }
+    });
+    
+    // Toggle current FAQ item
+    if (isActive) {
+      faqItem.classList.remove('active');
+    } else {
+      faqItem.classList.add('active');
+    }
+  };
 </script>
 
