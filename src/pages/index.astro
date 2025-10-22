@@ -1,5 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { Image } from "astro:assets";
+import card6Image from "../assets/card6.jpeg";
 ---
 <BaseLayout title="Summit Holiday Lighting | Home">
   <!-- Welcoming Hero -->
@@ -55,26 +57,26 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       <p class="muted">Choose the look you love—warm white elegance or a custom color combination.</p>
     </div>
     <div class="grid grid-auto">
-      <article class="card card-bg-1 animate-on-scroll animate-slide-bottom">
-        <div class="content">
+      <article class="surface card-bg-1 animate-on-scroll animate-slide-bottom">
+        <div class="content" style="padding: var(--space-5)">
           <h3>Custom-fit seasonal lighting</h3>
           <p class="muted">Perfectly measured and cut for your rooflines, windows, and architectural features.</p>
         </div>
       </article>
-      <article class="card card-bg-2 animate-on-scroll animate-slide-bottom">
-        <div class="content">
+      <article class="surface card-bg-2 animate-on-scroll animate-slide-bottom" style={`background-image: url("${card6Image.src}")`}>
+        <div class="content" style="padding: var(--space-5)">
           <h3>Permanent adjustable smart lighting</h3>
           <p class="muted">Year-round color-changing LED systems with app control for holidays, parties, and everyday ambiance.</p>
         </div>
       </article>
-      <article class="card card-bg-3 animate-on-scroll animate-slide-bottom">
-        <div class="content">
+      <article class="surface card-bg-3 animate-on-scroll animate-slide-bottom">
+        <div class="content" style="padding: var(--space-5)">
           <h3>Landscape & decorative accents</h3>
           <p class="muted">Tree lighting, bush wrapping, pathway illumination, and decorative spheres for complete outdoor transformation.</p>
         </div>
       </article>
-      <article class="card card-bg-4 animate-on-scroll animate-slide-bottom">
-        <div class="content">
+      <article class="surface card-bg-4 animate-on-scroll animate-slide-bottom">
+        <div class="content" style="padding: var(--space-5)">
           <h3>Wreaths & garlands</h3>
           <p class="muted">Classic touches for doors, rails, and entryways to welcome guests with traditional holiday charm.</p>
         </div>
