@@ -782,7 +782,7 @@ p {
   right: 0;
   bottom: 0;
   background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(1px);
   z-index: 100;
   display: flex;
   align-items: flex-start;
@@ -1054,113 +1054,14 @@ p {
   }
 }
 
-/* Animation classes */
-.animate-slide-left {
-  animation: slideInFromLeft 0.6s ease-out forwards;
-}
 
-.animate-slide-right {
-  animation: slideInFromRight 0.6s ease-out forwards;
-}
-
-.animate-slide-bottom {
-  animation: slideInFromBottom 0.6s ease-out forwards;
-}
-
-.animate-fade-up {
-  animation: fadeInUp 0.6s ease-out forwards;
-}
-
-/* Initially hidden elements - NO animation until in-view */
+/* Pure JavaScript animations - CSS is neutral */
 .animate-on-scroll {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.6s ease-out;
-}
-
-/* Animation classes only work when in-view */
-.animate-on-scroll.in-view.animate-slide-left {
-  animation: slideInFromLeft 0.6s ease-out forwards;
-}
-
-.animate-on-scroll.in-view.animate-slide-right {
-  animation: slideInFromRight 0.6s ease-out forwards;
-}
-
-.animate-on-scroll.in-view.animate-slide-bottom {
-  animation: slideInFromBottom 0.6s ease-out forwards;
-}
-
-.animate-on-scroll.in-view.animate-fade-up {
-  animation: fadeInUp 0.6s ease-out forwards;
-}
-
-/* Default animation for elements without specific animation class */
-.animate-on-scroll.in-view {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Mobile-specific animation behavior */
-@media (max-width: 768px) {
-  .animate-on-scroll {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.8s ease-out;
-  }
-
-  .animate-on-scroll.in-view.animate-slide-left {
-    transform: translateX(-50px);
-    animation: slideInFromLeft 0.8s ease-out forwards;
-  }
-
-  .animate-on-scroll.in-view.animate-slide-right {
-    transform: translateX(50px);
-    animation: slideInFromRight 0.8s ease-out forwards;
-  }
-
-  .animate-on-scroll.in-view.animate-slide-bottom {
-    transform: translateY(40px);
-    animation: slideInFromBottom 0.8s ease-out forwards;
-  }
-
-  .animate-on-scroll.in-view.animate-fade-up {
-    transform: translateY(25px);
-    animation: fadeInUp 0.8s ease-out forwards;
-  }
-
-  .animate-on-scroll.in-view {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  /* JavaScript will set all styles */
 }
 
 
-/* When element comes into view */
-.animate-on-scroll.in-view {
-  opacity: 1;
-  transform: translateX(0) translateY(0);
-}
 
-/* Staggered animations for multiple elements */
-.animate-on-scroll:nth-child(1) {
-  animation-delay: 0.1s;
-}
-.animate-on-scroll:nth-child(2) {
-  animation-delay: 0.2s;
-}
-.animate-on-scroll:nth-child(3) {
-  animation-delay: 0.3s;
-}
-.animate-on-scroll:nth-child(4) {
-  animation-delay: 0.4s;
-}
-.animate-on-scroll:nth-child(5) {
-  animation-delay: 0.5s;
-}
-.animate-on-scroll:nth-child(6) {
-  animation-delay: 0.6s;
-}
 
 /* Enhanced hover effects for animated elements */
 .animate-on-scroll.in-view:hover {
@@ -1336,4 +1237,36 @@ blockquote.animate-on-scroll.in-view:hover {
   .btn-primary:hover {
     box-shadow: 0 6px 20px rgba(201, 162, 74, 0.35);
   }
+}
+
+/* Toast Notifications */
+.toast-container {
+  z-index: 10000;
+}
+
+.toast {
+  background: var(--color-surface) !important;
+  color: var(--color-text) !important;
+  border: 1px solid var(--color-border) !important;
+  border-radius: var(--radius-md) !important;
+  box-shadow: var(--shadow-lg) !important;
+  backdrop-filter: blur(10px) !important;
+  font-family: var(--font-family) !important;
+  font-weight: 500 !important;
+}
+
+.toast-success {
+  border-left: 4px solid var(--summit-gold) !important;
+}
+
+.toast-error {
+  border-left: 4px solid #e74c3c !important;
+}
+
+.toast-warning {
+  border-left: 4px solid var(--warm-amber-glow) !important;
+}
+
+.toast-info {
+  border-left: 4px solid var(--accent-star) !important;
 }

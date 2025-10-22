@@ -8,6 +8,9 @@ const { title = "My Website" } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="shortcut icon" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
@@ -23,47 +26,81 @@ const { title = "My Website" } = Astro.props;
 </html>
 
 <script>
-  // Scroll-triggered animations using IntersectionObserver
+  // Pure JavaScript animation system
+  let hasScrolled = false;
+  let animationElements = [];
+  
   function initScrollAnimations() {
-    const animatedElements = document.querySelectorAll('.animate-on-scroll');
+    // Get all elements that need animation
+    animationElements = Array.from(document.querySelectorAll('.animate-on-scroll'));
     
-    if (animatedElements.length === 0) return;
-    
-    // Create intersection observer
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          // Add a small delay for staggered effect
-          const delay = Array.from(animatedElements).indexOf(entry.target) * 100;
-          setTimeout(() => {
-            entry.target.classList.add('in-view');
-          }, delay);
-          
-          // Stop observing this element once it's animated
-          observer.unobserve(entry.target);
-        }
-      });
-    }, {
-      // Trigger when element is 20% visible
-      threshold: 0.2,
-      // Start animation when element is 50px from viewport
-      rootMargin: '50px 0px -50px 0px'
-    });
-    
-    // Start observing all animated elements
-    animatedElements.forEach((element) => {
-      observer.observe(element);
+    // Reset all elements with JavaScript
+    animationElements.forEach(element => {
+      element.classList.remove('in-view');
+      
+      // Set initial state with JavaScript
+      element.style.opacity = '0';
+      element.style.transform = 'translateY(50px)';
+      element.style.transition = 'none'; // No CSS transitions
+      
+      // Force a reflow
+      element.offsetHeight;
     });
   }
   
-  // Initialize animations when DOM is loaded
+  function animateElement(element) {
+    // Add in-view class
+    element.classList.add('in-view');
+    
+    // Set up the animation
+    element.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+    
+    // Use requestAnimationFrame to ensure smooth animation
+    requestAnimationFrame(() => {
+      element.style.opacity = '1';
+      element.style.transform = 'translateY(0)';
+    });
+  }
+  
+  function checkAnimations() {
+    if (!hasScrolled) return;
+    
+    const windowHeight = window.innerHeight;
+    
+    animationElements.forEach((element, index) => {
+      if (element.classList.contains('in-view')) return; // Already animated
+      
+      const rect = element.getBoundingClientRect();
+      const elementTop = rect.top;
+      const elementBottom = rect.bottom;
+      
+      // Check if element is in viewport
+      if (elementTop < windowHeight - 50 && elementBottom > 50) {
+        animateElement(element);
+      }
+    });
+  }
+  
+  function handleScroll() {
+    if (!hasScrolled) {
+      hasScrolled = true;
+    }
+    
+    checkAnimations();
+  }
+  
+  // Initialize on DOM ready
   document.addEventListener('DOMContentLoaded', () => {
     initScrollAnimations();
+    window.addEventListener('scroll', handleScroll, { passive: true });
   });
   
-  // Re-initialize on page navigation (for SPA-like behavior)
+  // Re-initialize on page navigation
   document.addEventListener('astro:page-load', () => {
+    hasScrolled = false;
     initScrollAnimations();
+    window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
   });
   
   // FAQ Toggle Function

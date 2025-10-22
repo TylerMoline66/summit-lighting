@@ -13,7 +13,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       <div class="surface" style="padding: var(--space-6); text-align: center;">
         <h3 style="color: var(--color-brand); margin-bottom: var(--space-3);">📞 Phone</h3>
         <p class="muted" style="margin-bottom: var(--space-3);">Call for immediate assistance</p>
-        <a href="tel:+1-888-808-7751" style="color: var(--color-text); text-decoration: none; font-weight: 600; font-size: 1.1rem;">+1 (888) 808-7751</a>
+        <a href="tel:+1-780-995-9653" style="color: var(--color-text); text-decoration: none; font-weight: 600; font-size: 1.1rem;">+1 (780) 995-9653</a>
       </div>
       
       <div class="surface" style="padding: var(--space-6); text-align: center;">
@@ -36,7 +36,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         <p class="muted" style="text-align: center; margin-bottom: var(--space-4);">Your estimate is 100% free and comes with no obligation.</p>
         <p class="muted" style="text-align: center; margin-bottom: var(--space-6);">Fill out the form below and we'll get back to you within 24 hours.</p>
         
-        <form>
+        <form id="contactForm">
           <div class="form-row two">
             <div>
               <label for="name">Name</label>
@@ -67,8 +67,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
             </div>
           </div>
           <div class="form-actions">
-            <button type="button" class="btn btn-primary" onclick="copyFormData()">Copy Message</button>
-            <a class="btn btn-ghost" href="mailto:jarrod.caufield@gmail.com?subject=Holiday Lighting Inquiry">📧 Send Email</a>
+            <button type="submit" class="btn btn-primary">📧 Send Message</button>
+            <button type="button" class="btn btn-ghost" onclick="copyFormData()">Copy Message</button>
           </div>
         </form>
       </div>
@@ -77,6 +77,111 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 </BaseLayout>
 
 <script>
+  // Custom Toast Implementation
+  function showToast(message, type = 'success') {
+    // Create toast container if it doesn't exist
+    let container = document.getElementById('toast-container');
+    if (!container) {
+      container = document.createElement('div');
+      container.id = 'toast-container';
+      container.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 10000;
+        pointer-events: none;
+      `;
+      document.body.appendChild(container);
+    }
+
+    // Create toast element
+    const toast = document.createElement('div');
+    toast.style.cssText = `
+      background: var(--color-surface);
+      color: var(--color-text);
+      border: 1px solid var(--color-border);
+      border-left: 4px solid ${type === 'success' ? 'var(--summit-gold)' : type === 'error' ? '#e74c3c' : type === 'warning' ? 'var(--warm-amber-glow)' : 'var(--accent-star)'};
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-lg);
+      backdrop-filter: blur(10px);
+      font-family: var(--font-family);
+      font-weight: 500;
+      padding: 16px 20px;
+      margin-bottom: 10px;
+      max-width: 400px;
+      opacity: 0;
+      transform: translateX(100%);
+      transition: all 0.3s ease-out;
+      pointer-events: auto;
+    `;
+    
+    toast.textContent = message;
+    container.appendChild(toast);
+
+    // Animate in
+    setTimeout(() => {
+      toast.style.opacity = '1';
+      toast.style.transform = 'translateX(0)';
+    }, 10);
+
+    // Auto remove after duration
+    const duration = type === 'success' ? 5000 : 4000;
+    setTimeout(() => {
+      toast.style.opacity = '0';
+      toast.style.transform = 'translateX(100%)';
+      setTimeout(() => {
+        if (toast.parentNode) {
+          toast.parentNode.removeChild(toast);
+        }
+      }, 300);
+    }, duration);
+  }
+
+  document.getElementById('contactForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const submitButton = e.target.querySelector('button[type="submit"]');
+    const originalText = submitButton.textContent;
+    
+    // Show loading state
+    submitButton.textContent = 'Sending...';
+    submitButton.disabled = true;
+    
+    try {
+      const formData = new FormData(e.target);
+      const data = {
+        name: formData.get('name'),
+        email: formData.get('email'),
+        phone: formData.get('phone'),
+        address: formData.get('address'),
+        message: formData.get('message')
+      };
+      
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+      });
+      
+      const result = await response.json();
+      
+      if (result.success) {
+        showToast('Message sent successfully! We\'ll get back to you within 24 hours.', 'success');
+        e.target.reset(); // Clear the form
+      } else {
+        showToast('Error: ' + (result.error || 'Failed to send message'), 'error');
+      }
+    } catch (error) {
+      showToast('Error: Failed to send message. Please try again.', 'error');
+    } finally {
+      // Reset button state
+      submitButton.textContent = originalText;
+      submitButton.disabled = false;
+    }
+  });
+
   function copyFormData() {
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
@@ -85,7 +190,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     const message = document.getElementById('message').value;
 
     if (!name || !email || !message) {
-      alert('Please fill in the required fields (Name, Email, Message)');
+      showToast('Please fill in the required fields (Name, Email, Message)', 'warning');
       return;
     }
 
@@ -96,7 +201,7 @@ Address: ${address || 'Not provided'}
 Message: ${message}`;
 
     navigator.clipboard.writeText(formData).then(() => {
-      alert('Message copied to clipboard! You can now paste it into your email client.');
+      showToast('Message copied to clipboard! You can now paste it into your email client.', 'success');
     }).catch(() => {
       // Fallback for older browsers
       const textArea = document.createElement('textarea');
@@ -105,7 +210,7 @@ Message: ${message}`;
       textArea.select();
       document.execCommand('copy');
       document.body.removeChild(textArea);
-      alert('Message copied to clipboard! You can now paste it into your email client.');
+      showToast('Message copied to clipboard! You can now paste it into your email client.', 'success');
     });
   }
 </script>
