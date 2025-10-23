@@ -19,7 +19,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       <div class="surface" style="padding: var(--space-6); text-align: center;">
         <h3 style="color: var(--color-brand); margin-bottom: var(--space-3);">📧 Email</h3>
         <p class="muted" style="margin-bottom: var(--space-3);">Send us a detailed message</p>
-        <a href="mailto:jarrod.caufield@gmail.com" style="color: var(--color-text); text-decoration: none; font-weight: 600; font-size: 1.1rem;">jarrod.caufield@gmail.com</a>
+        <a href="mailto:jarrod@summitholidaylighting.com" style="color: var(--color-text); text-decoration: none; font-weight: 600; font-size: 1.1rem;">jarrod@summitholidaylighting.com</a>
       </div>
       
       <div class="surface" style="padding: var(--space-6); text-align: center;">
@@ -68,7 +68,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           </div>
           <div class="form-actions">
             <button type="submit" class="btn btn-primary">📧 Send Message</button>
-            <button type="button" class="btn btn-ghost" onclick="copyFormData()">Copy Message</button>
           </div>
         </form>
       </div>
@@ -182,35 +181,4 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     }
   });
 
-  function copyFormData() {
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const phone = document.getElementById('phone').value;
-    const address = document.getElementById('address').value;
-    const message = document.getElementById('message').value;
-
-    if (!name || !email || !message) {
-      showToast('Please fill in the required fields (Name, Email, Message)', 'warning');
-      return;
-    }
-
-    const formData = `Name: ${name}
-Email: ${email}
-Phone: ${phone || 'Not provided'}
-Address: ${address || 'Not provided'}
-Message: ${message}`;
-
-    navigator.clipboard.writeText(formData).then(() => {
-      showToast('Message copied to clipboard! You can now paste it into your email client.', 'success');
-    }).catch(() => {
-      // Fallback for older browsers
-      const textArea = document.createElement('textarea');
-      textArea.value = formData;
-      document.body.appendChild(textArea);
-      textArea.select();
-      document.execCommand('copy');
-      document.body.removeChild(textArea);
-      showToast('Message copied to clipboard! You can now paste it into your email client.', 'success');
-    });
-  }
 </script>

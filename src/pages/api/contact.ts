@@ -60,7 +60,7 @@ export const POST: APIRoute = async ({ request }) => {
     // Email content
     const emailContent = {
       from: "tmoline@devpipeline.com",
-      to: "jarrod.caufield@gmail.com",
+      to: "jarrod@summitholidaylighting.com",
       subject: `New Contact Form Submission - ${name}`,
       html: `
         <h2>New Contact Form Submission</h2>
