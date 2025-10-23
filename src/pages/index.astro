@@ -56,31 +56,60 @@ import card6Image from "../assets/card6.jpeg";
       <h2>Holiday lighting products we offer</h2>
       <p class="muted">Choose the look you love—warm white elegance or a custom color combination.</p>
     </div>
-    <div class="grid grid-auto">
-      <article class="surface card-bg-1 animate-on-scroll animate-slide-bottom">
-        <div class="content" style="padding: var(--space-5)">
-          <h3>Custom-fit seasonal lighting</h3>
-          <p class="muted">Perfectly measured and cut for your rooflines, windows, and architectural features.</p>
+    
+    <div class="carousel-container animate-on-scroll animate-slide-bottom">
+      <div class="carousel-wrapper">
+        <div class="carousel-track" id="carouselTrack">
+          <article class="surface carousel-slide active">
+            <div class="carousel-image card-bg-1"></div>
+            <div class="carousel-content">
+              <h3>Custom-fit seasonal lighting</h3>
+              <p class="muted">Perfectly measured and cut for your rooflines, windows, and architectural features.</p>
+            </div>
+          </article>
+          <article class="surface carousel-slide" style={`background-image: url("${card6Image.src}")`}>
+            <div class="carousel-image card-bg-2" style={`background-image: url("${card6Image.src}")`}></div>
+            <div class="carousel-content">
+              <h3>Permanent adjustable smart lighting</h3>
+              <p class="muted">Year-round color-changing LED systems with app control for holidays, parties, and everyday ambiance.</p>
+            </div>
+          </article>
+          <article class="surface carousel-slide">
+            <div class="carousel-image card-bg-3"></div>
+            <div class="carousel-content">
+              <h3>Landscape & decorative accents</h3>
+              <p class="muted">Tree lighting, bush wrapping, pathway illumination, and decorative spheres for complete outdoor transformation.</p>
+            </div>
+          </article>
+          <article class="surface carousel-slide">
+            <div class="carousel-image card-bg-4"></div>
+            <div class="carousel-content">
+              <h3>Wreaths & garlands</h3>
+              <p class="muted">Classic touches for doors, rails, and entryways to welcome guests with traditional holiday charm.</p>
+            </div>
+          </article>
         </div>
-      </article>
-      <article class="surface card-bg-2 animate-on-scroll animate-slide-bottom" style={`background-image: url("${card6Image.src}")`}>
-        <div class="content" style="padding: var(--space-5)">
-          <h3>Permanent adjustable smart lighting</h3>
-          <p class="muted">Year-round color-changing LED systems with app control for holidays, parties, and everyday ambiance.</p>
+      </div>
+      
+      <!-- Carousel Controls -->
+      <div class="carousel-controls">
+        <button class="carousel-btn carousel-prev" id="prevBtn" aria-label="Previous card">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="m15 18-6-6 6-6"/>
+          </svg>
+        </button>
+        <div class="carousel-indicators" id="carouselIndicators">
+          <button class="indicator active" data-slide="0" aria-label="Go to slide 1"></button>
+          <button class="indicator" data-slide="1" aria-label="Go to slide 2"></button>
+          <button class="indicator" data-slide="2" aria-label="Go to slide 3"></button>
+          <button class="indicator" data-slide="3" aria-label="Go to slide 4"></button>
         </div>
-      </article>
-      <article class="surface card-bg-3 animate-on-scroll animate-slide-bottom">
-        <div class="content" style="padding: var(--space-5)">
-          <h3>Landscape & decorative accents</h3>
-          <p class="muted">Tree lighting, bush wrapping, pathway illumination, and decorative spheres for complete outdoor transformation.</p>
-        </div>
-      </article>
-      <article class="surface card-bg-4 animate-on-scroll animate-slide-bottom">
-        <div class="content" style="padding: var(--space-5)">
-          <h3>Wreaths & garlands</h3>
-          <p class="muted">Classic touches for doors, rails, and entryways to welcome guests with traditional holiday charm.</p>
-        </div>
-      </article>
+        <button class="carousel-btn carousel-next" id="nextBtn" aria-label="Next card">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="m9 18 6-6-6-6"/>
+          </svg>
+        </button>
+      </div>
     </div>
   </section>
 
@@ -90,31 +119,46 @@ import card6Image from "../assets/card6.jpeg";
       <h2>How it works</h2>
       <p class="muted">From idea to sparkle in four easy steps.</p>
     </div>
-    <div class="grid grid-auto">
-      <article class="surface animate-on-scroll animate-slide-left">
-        <div class="content" style="padding: var(--space-5)">
-          <h3>1) Book your free consultation</h3>
-          <p class="muted">We collaborate on a custom display that matches your home and taste.</p>
+    <div class="process-flow">
+      <div class="process-step animate-on-scroll animate-slide-bottom">
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h3>Book your free consultation</h3>
+            <p class="muted">We collaborate on a custom display that matches your home and taste.</p>
+          </div>
         </div>
-      </article>
-      <article class="surface animate-on-scroll animate-slide-bottom">
-        <div class="content" style="padding: var(--space-5)">
-          <h3>2) Approve your display</h3>
-          <p class="muted">Get a clear estimate and timeline—then we prep your custom lights.</p>
+      </div>
+      
+      <div class="process-step animate-on-scroll animate-slide-bottom">
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h3>Approve your display</h3>
+            <p class="muted">Get a clear estimate and timeline—then we prep your custom lights.</p>
+          </div>
         </div>
-      </article>
-      <article class="surface animate-on-scroll animate-slide-right">
-        <div class="content" style="padding: var(--space-5)">
-          <h3>3) Installation day</h3>
-          <p class="muted">Friendly technicians install quickly and safely. You only pay once you're thrilled.</p>
+      </div>
+      
+      <div class="process-step animate-on-scroll animate-slide-bottom">
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h3>Professional installation</h3>
+            <p class="muted">Our expert team installs everything perfectly, ensuring safety and beauty.</p>
+          </div>
         </div>
-      </article>
-      <article class="surface animate-on-scroll animate-slide-left">
-        <div class="content" style="padding: var(--space-5)">
-          <h3>4) Takedown & storage</h3>
-          <p class="muted">We handle complete removal and organized storage so next year's setup is seamless.</p>
+      </div>
+      
+      <div class="process-step animate-on-scroll animate-slide-bottom">
+        <div class="step-card">
+          <div class="step-number">4</div>
+          <div class="step-content">
+            <h3>Takedown & storage</h3>
+            <p class="muted">We handle complete removal and organized storage so next year's setup is seamless.</p>
+          </div>
         </div>
-      </article>
+      </div>
     </div>
   </section>
 
@@ -215,3 +259,86 @@ import card6Image from "../assets/card6.jpeg";
     </div>
   </section>
 </BaseLayout>
+
+<script>
+  // Carousel functionality
+  document.addEventListener('DOMContentLoaded', function() {
+    const track = document.getElementById('carouselTrack');
+    const slides = document.querySelectorAll('.carousel-slide');
+    const indicators = document.querySelectorAll('.indicator');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    
+    let currentSlide = 0;
+    const totalSlides = slides.length;
+    
+    function updateCarousel() {
+      // Update slide visibility
+      slides.forEach((slide, index) => {
+        slide.classList.toggle('active', index === currentSlide);
+      });
+      
+      // Update indicators
+      indicators.forEach((indicator, index) => {
+        indicator.classList.toggle('active', index === currentSlide);
+      });
+      
+      // Update track position
+      const translateX = -currentSlide * 25;
+      track.style.transform = `translateX(${translateX}%)`;
+    }
+    
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % totalSlides;
+      updateCarousel();
+    }
+    
+    function prevSlide() {
+      currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+      updateCarousel();
+    }
+    
+    function goToSlide(slideIndex) {
+      currentSlide = slideIndex;
+      updateCarousel();
+    }
+    
+    // Event listeners
+    nextBtn.addEventListener('click', nextSlide);
+    prevBtn.addEventListener('click', prevSlide);
+    
+    indicators.forEach((indicator, index) => {
+      indicator.addEventListener('click', () => goToSlide(index));
+    });
+    
+    // Auto-play functionality (optional)
+    let autoPlayInterval;
+    
+    function startAutoPlay() {
+      autoPlayInterval = setInterval(nextSlide, 10000); // Change slide every 10 seconds
+    }
+    
+    function stopAutoPlay() {
+      clearInterval(autoPlayInterval);
+    }
+    
+    // Start auto-play
+    startAutoPlay();
+    
+    // Pause auto-play on hover
+    const carouselContainer = document.querySelector('.carousel-container');
+    carouselContainer.addEventListener('mouseenter', stopAutoPlay);
+    carouselContainer.addEventListener('mouseleave', startAutoPlay);
+    
+    // Pause auto-play when user interacts with controls
+    [prevBtn, nextBtn, ...indicators].forEach(element => {
+      element.addEventListener('click', () => {
+        stopAutoPlay();
+        setTimeout(startAutoPlay, 10000); // Resume after 10 seconds
+      });
+    });
+    
+    // Initialize carousel
+    updateCarousel();
+  });
+</script>
