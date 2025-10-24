@@ -1301,6 +1301,7 @@ blockquote.animate-on-scroll.in-view:hover {
   margin-left: calc(50% - 50vw);
   height: 60vh;
   min-height: 400px;
+  background-color: var(--midnight-summit-navy);
   background-image: url('/card6.jpeg');
   background-attachment: fixed;
   background-position: center;
@@ -1314,12 +1315,83 @@ blockquote.animate-on-scroll.in-view:hover {
   overflow: hidden;
 }
 
-/* Fallback for browsers that don't support fixed attachment */
+.parallax-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+
+.parallax-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: var(--frost-white);
+  max-width: 800px;
+  padding: var(--space-6);
+}
+
+.parallax-content h2 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: var(--space-4);
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+  background: linear-gradient(135deg, var(--frost-white), var(--warm-amber-glow));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.parallax-content p {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+  opacity: 0.95;
+}
+
+/* Enhanced parallax with better browser support */
+.parallax-section {
+  background-attachment: fixed;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+
+/* Fallback for browsers/platforms that don't support fixed attachment */
 @supports not (background-attachment: fixed) {
   .parallax-section {
     background-attachment: scroll;
+    transform: translateZ(0);
   }
 }
+
+/* Force hardware acceleration for better performance */
+.parallax-section::before {
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+
+/* Alternative approach for mobile and restricted platforms */
+@media (max-width: 768px) {
+  .parallax-section {
+    background-attachment: scroll;
+    transform: translateZ(0);
+    height: 50vh;
+    min-height: 300px;
+  }
+  
+  .parallax-content h2 {
+    font-size: 2rem;
+  }
+  
+  .parallax-content p {
+    font-size: 1.1rem;
+  }
+}
+
 
 .parallax-section::before {
   content: '';
@@ -1834,14 +1906,15 @@ body {
 
 /* Simple Carousel */
 .simple-carousel {
-  max-width: 500px;
+  max-width: 600px;
   margin: 0 auto;
   position: relative;
+  padding: var(--space-8) 0;
 }
 
 .carousel-slides {
   position: relative;
-  height: 400px;
+  height: 450px;
   overflow: hidden;
   border-radius: var(--radius-lg);
 }
@@ -1910,8 +1983,8 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: var(--space-4);
-  padding: 0 var(--space-2);
+  margin-top: var(--space-6);
+  padding: 0 var(--space-4);
 }
 
 .prev-btn, .next-btn {

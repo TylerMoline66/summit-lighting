@@ -102,6 +102,67 @@ const { title = "My Website" } = Astro.props;
     window.removeEventListener('scroll', handleScroll);
     window.addEventListener('scroll', handleScroll, { passive: true });
   });
+
+  // CSS Parallax Fallback for Live Sites
+  function initParallaxFallback() {
+    const parallaxSection = document.querySelector('.parallax-section');
+    if (!parallaxSection) return;
+
+    // Check if fixed attachment is working
+    const testElement = document.createElement('div');
+    testElement.style.cssText = 'background-attachment: fixed; position: fixed; top: 0; left: 0; width: 1px; height: 1px;';
+    document.body.appendChild(testElement);
+    
+    const computedStyle = window.getComputedStyle(testElement);
+    const isFixedSupported = computedStyle.backgroundAttachment === 'fixed';
+    
+    document.body.removeChild(testElement);
+
+    // If fixed attachment doesn't work, use JavaScript parallax
+    if (!isFixedSupported) {
+      console.log('Fixed attachment not supported, using JavaScript parallax');
+      
+      // Create a background element for JavaScript parallax
+      const backgroundElement = document.createElement('div');
+      backgroundElement.style.cssText = `
+        position: absolute;
+        top: -50%;
+        left: 0;
+        width: 100%;
+        height: 200%;
+        background-image: url('/card6.jpeg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        will-change: transform;
+        z-index: -1;
+        transform: translateZ(0);
+      `;
+      
+      parallaxSection.appendChild(backgroundElement);
+      
+      // Remove the CSS background since we're using JS
+      parallaxSection.style.backgroundImage = 'none';
+
+      function updateParallax() {
+        const scrolled = window.pageYOffset;
+        const rate = scrolled * -0.3;
+        backgroundElement.style.transform = `translateY(${rate}px) translateZ(0)`;
+      }
+
+      function handleParallaxScroll() {
+        requestAnimationFrame(updateParallax);
+      }
+
+      window.addEventListener('scroll', handleParallaxScroll, { passive: true });
+    } else {
+      console.log('Fixed attachment supported, using CSS parallax');
+    }
+  }
+
+  // Initialize parallax fallback
+  document.addEventListener('DOMContentLoaded', initParallaxFallback);
+  document.addEventListener('astro:page-load', initParallaxFallback);
   
   // FAQ Toggle Function
   window.toggleFAQ = function(button) {
