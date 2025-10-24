@@ -106,7 +106,12 @@ const { title = "My Website" } = Astro.props;
   // CSS Parallax Fallback for Live Sites
   function initParallaxFallback() {
     const parallaxSection = document.querySelector('.parallax-section');
-    if (!parallaxSection) return;
+    if (!parallaxSection) {
+      console.log('Parallax section not found');
+      return;
+    }
+
+    console.log('Parallax section found, testing fixed attachment...');
 
     // Check if fixed attachment is working
     const testElement = document.createElement('div');
@@ -117,6 +122,8 @@ const { title = "My Website" } = Astro.props;
     const isFixedSupported = computedStyle.backgroundAttachment === 'fixed';
     
     document.body.removeChild(testElement);
+
+    console.log('Fixed attachment test result:', isFixedSupported);
 
     // If fixed attachment doesn't work, use JavaScript parallax
     if (!isFixedSupported) {
@@ -155,6 +162,7 @@ const { title = "My Website" } = Astro.props;
       }
 
       window.addEventListener('scroll', handleParallaxScroll, { passive: true });
+      console.log('JavaScript parallax initialized');
     } else {
       console.log('Fixed attachment supported, using CSS parallax');
     }
