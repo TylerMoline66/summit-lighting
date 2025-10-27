@@ -2,26 +2,331 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 <BaseLayout title="About Us">
-  <h1>About Our Company</h1>
-  <p>We are a team dedicated to bringing holiday magic to your home. With years of experience in exterior decor and lighting, we focus on quality, safety, and delight.</p>
+<script>
+  // Counter animation function
+  function animateCounter(element, target) {
+    const duration = 2000; // 2 seconds
+    const increment = target / (duration / 16); // 60fps
+    let current = 0;
 
-  <section class="our-values">
-    <h2>Our Values</h2>
-    <ul>
-      <li>Client-first approach</li>
-      <li>Attention to detail</li>
-      <li>Safety & professionalism</li>
-      <li>Transparent pricing</li>
-    </ul>
+    const timer = setInterval(() => {
+      current += increment;
+      if (current >= target) {
+        element.textContent = target + (element.dataset.suffix || '');
+        clearInterval(timer);
+      } else {
+        element.textContent = Math.floor(current) + (element.dataset.suffix || '');
+      }
+    }, 16);
+  }
+
+  // Initialize counters when section is visible
+  function initCounters() {
+    const statNumbers = document.querySelectorAll('.stat-number[data-target]');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const element = entry.target;
+          const target = parseInt(element.dataset.target);
+          const suffix = element.dataset.suffix || '';
+          
+          // Mark as animated to prevent re-animation
+          if (!element.dataset.animated) {
+            element.dataset.animated = 'true';
+            element.textContent = '0' + suffix;
+            animateCounter(element, target);
+          }
+        }
+      });
+    }, { threshold: 0.5 });
+
+    statNumbers.forEach(stat => observer.observe(stat));
+  }
+
+  // Initialize on page load
+  document.addEventListener('DOMContentLoaded', initCounters);
+</script>
+  <!-- Hero Section -->
+  <section class="about-hero">
+    <div class="about-hero-content">
+      <h1 class="about-hero-title">Bringing Holiday Magic to Your Home</h1>
+      <p class="about-hero-text">With years of experience in exterior decor and lighting, we transform ordinary homes into extraordinary holiday displays that bring joy to neighborhoods and create lasting family memories.</p>
+    </div>
   </section>
 
-  <section class="our-history">
-    <h2>Our Story</h2>
-    <p>Founded in 2023, we started with humble beginnings and now serve dozens of homes each holiday season. Our mission: make holiday lights easy for homeowners.</p>
+  <!-- Stats Section -->
+  <section class="about-stats">
+    <div class="stat-card">
+      <div class="stat-number" data-target="200" data-suffix="+"></div>
+      <div class="stat-label">Homes Lit</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number" data-target="5" data-suffix="+"></div>
+      <div class="stat-label">Years Experience</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number" data-target="100" data-suffix="%"></div>
+      <div class="stat-label">Satisfaction Rate</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">24/7</div>
+      <div class="stat-label">Support Available</div>
+    </div>
   </section>
 
-  <section class="team-cta">
-    <p>Want to meet our team?</p>
-    <a class="btn btn-primary" href="/team">Meet Everybody</a>
+  <!-- Our Values with Icons -->
+  <section class="our-values-section">
+    <h2 class="section-title">Our Core Values</h2>
+    <div class="values-grid">
+      <div class="value-card">
+        <div class="value-icon">🎯</div>
+        <h3>Client-First Approach</h3>
+        <p>Your vision and satisfaction are at the heart of everything we do. We listen, understand, and deliver.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">✨</div>
+        <h3>Attention to Detail</h3>
+        <p>Every strand, every bulb, every connection matters. We ensure perfection in every aspect.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🛡️</div>
+        <h3>Safety & Professionalism</h3>
+        <p>Fully insured, certified, and trained professionals who prioritize your family's safety.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">💰</div>
+        <h3>Transparent Pricing</h3>
+        <p>No hidden fees, no surprises. Clear, upfront pricing you can trust.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Story -->
+  <section class="our-story-section">
+    <div class="story-content">
+      <h2 class="section-title">Our Story</h2>
+      <p class="story-text">
+        Summit Holiday Lighting was born from a simple desire: to make professional holiday lighting accessible to every homeowner. What started as a small local business has grown into a trusted name that serves dozens of families each holiday season.
+      </p>
+      <p class="story-text">
+        Our journey began when we realized that while everyone loves a beautifully lit home during the holidays, many people simply don't have the time, equipment, or expertise to create the displays they envision. That's where we come in.
+      </p>
+      <p class="story-text">
+        Today, our mission remains the same: to bring holiday magic to your doorstep, one bulb at a time. We're proud to have helped hundreds of families create memories that last a lifetime, and we're just getting started.
+      </p>
+    </div>
   </section>
 </BaseLayout>
+
+<style>
+  .about-hero {
+    background: linear-gradient(135deg, var(--evergreen-shadow), var(--midnight-summit-navy));
+    padding: var(--space-12) var(--space-6);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .about-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(12, 26, 43, 0.9), rgba(26, 42, 58, 0.9));
+    opacity: 0.7;
+  }
+
+  .about-hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .about-hero-title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: var(--space-4);
+    background: linear-gradient(135deg, var(--frost-white), var(--warm-amber-glow));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .about-hero-text {
+    font-size: 1.25rem;
+    line-height: 1.7;
+    color: var(--color-text-muted);
+  }
+
+  /* Stats Section */
+  .about-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-6);
+    padding: var(--space-12) var(--space-6);
+    max-width: var(--container);
+    margin: 0 auto;
+  }
+
+  .stat-card {
+    text-align: center;
+    padding: var(--space-6);
+    background: linear-gradient(135deg, rgba(12, 26, 43, 0.6), rgba(26, 42, 58, 0.6));
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(201, 162, 74, 0.2);
+    transition: all 0.3s ease;
+  }
+
+  .stat-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--warm-amber-glow);
+    box-shadow: 0 8px 24px rgba(201, 162, 74, 0.3);
+  }
+
+  .stat-number {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--warm-amber-glow);
+    margin-bottom: var(--space-2);
+  }
+
+  .stat-label {
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    font-weight: 600;
+  }
+
+  /* Values Section */
+  .our-values-section {
+    padding: var(--space-12) var(--space-6);
+    max-width: var(--container);
+    margin: 0 auto;
+  }
+
+  .section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: var(--space-8);
+    color: var(--color-text);
+  }
+
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-6);
+  }
+
+  .value-card {
+    padding: var(--space-6);
+    background: linear-gradient(135deg, rgba(12, 26, 43, 0.6), rgba(26, 42, 58, 0.6));
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(201, 162, 74, 0.2);
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+
+  .value-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--warm-amber-glow);
+    box-shadow: 0 12px 32px rgba(201, 162, 74, 0.2);
+  }
+
+  .value-icon {
+    font-size: 3rem;
+    margin-bottom: var(--space-4);
+  }
+
+  .value-card h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: var(--space-3);
+    color: var(--color-text);
+  }
+
+  .value-card p {
+    color: var(--color-text-muted);
+    line-height: 1.6;
+  }
+
+  /* Story Section */
+  .our-story-section {
+    padding: var(--space-12) var(--space-6);
+    max-width: 800px;
+    margin: 0 auto;
+    margin-top: 6rem;
+  }
+
+  .story-content {
+    background: linear-gradient(135deg, rgba(12, 26, 43, 0.6), rgba(26, 42, 58, 0.6));
+    padding: var(--space-8);
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(201, 162, 74, 0.2);
+  }
+
+  .story-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-4);
+  }
+
+  .story-text:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Mobile Responsive */
+  @media (max-width: 768px) {
+    .about-hero-title {
+      font-size: 2rem;
+    }
+
+    .about-hero-text {
+      font-size: 1.1rem;
+    }
+
+    .about-stats {
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-4);
+      padding: var(--space-8) var(--space-4);
+    }
+
+    .stat-number {
+      font-size: 2rem;
+    }
+
+    .section-title {
+      font-size: 2rem;
+    }
+
+    .values-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .story-content {
+      padding: var(--space-6);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .about-hero {
+      padding: var(--space-8) var(--space-4);
+    }
+
+    .about-hero-title {
+      font-size: 1.75rem;
+    }
+
+    .stat-number {
+      font-size: 1.75rem;
+    }
+
+    .stat-label {
+      font-size: 0.9rem;
+    }
+  }
+</style>
