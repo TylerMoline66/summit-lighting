@@ -1,7 +1,7 @@
 /* Design tokens - Christmas Light Business Palette */
 :root {
   /* Primary Colors */
-  --summit-gold: #c9a24a;
+  --summit-gold: #ffe952;
   --midnight-summit-navy: #0c1a2b;
 
   /* Secondary Colors */
@@ -400,17 +400,18 @@ p {
 /* CTA band */
 .cta {
   background: linear-gradient(
-    180deg,
-    var(--color-brand-600),
-    var(--color-brand-700)
+    135deg,
+    rgba(255, 233, 82, 0.15),
+    rgba(255, 233, 82, 0.08)
   );
-  color: var(--midnight-summit-navy);
+  color: var(--color-text);
   text-align: center;
   padding: var(--space-7) var(--space-5);
   border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 233, 82, 0.3);
 }
 .cta a.btn-primary {
-  background: var(--frost-white);
+  background: #ffe952;
   color: var(--midnight-summit-navy);
   border-color: transparent;
 }

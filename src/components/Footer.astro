@@ -1,10 +1,8 @@
 <footer class="footer">
   <div class="footer-inner">
-    <p>© 2025 Summit Lighting. All rights reserved.</p>
+    <p>© 2025 Summit Holiday Lighting. All rights reserved.</p>
     <div class="meta">
-      <a href="/privacy">Privacy</a>
-      <span>•</span>
-      <a href="/terms">Terms</a>
+      <a href="/contact" class="contact-btn">Contact Us</a>
     </div>
   </div>
   
@@ -29,6 +27,23 @@
   .footer a { color: var(--color-text); text-decoration: none; }
   .footer a:hover { text-decoration: underline; }
   .meta { display: flex; align-items: center; gap: .5rem; }
+  
+  .contact-btn {
+    background: var(--warm-amber-glow);
+    color: var(--midnight-summit-navy);
+    padding: 0.5rem 1.5rem;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    transition: all 0.2s ease;
+    text-decoration: none !important;
+  }
+  
+  .contact-btn:hover {
+    background: #ffd700;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(201, 162, 74, 0.3);
+    text-decoration: none !important;
+  }
   @media (max-width: 720px) {
     .footer-inner { flex-direction: column; }
   }
