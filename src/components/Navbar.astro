@@ -4,7 +4,7 @@
   <div class="nav-inner">
     <a class="brand" href="/">
       <img src="/logo-basic.png" alt="Summit Holiday Lighting" class="logo" />
-      <span class="brand-text">Summit Lighting</span>
+      <span class="brand-text">Summit Holiday Lighting</span>
     </a>
     
     <!-- Mobile menu button -->
@@ -99,12 +99,15 @@
   .navbar {
     position: sticky;
     top: 0;
-    z-index: 50;
+    left: 0;
+    right: 0;
+    z-index: 9998;
     padding: 0.6rem 0;
     backdrop-filter: saturate(180%) blur(10px);
     -webkit-backdrop-filter: saturate(180%) blur(10px);
-    background: linear-gradient(180deg, rgba(12, 26, 43, 0.9), rgba(12, 26, 43, 0.7));
+    background: linear-gradient(180deg, rgba(12, 26, 43, 0.95), rgba(12, 26, 43, 0.8));
     border-bottom: 1px solid var(--color-border);
+    width: 100%;
   }
   .nav-inner {
     max-width: var(--container);
@@ -136,6 +139,9 @@
   }
   .brand-text {
     font-size: 1.1rem;
+    font-family: 'the-seasons', serif;
+    font-weight: 400;
+    letter-spacing: 0.02em;
   }
   
   /* Desktop links */
@@ -278,6 +284,8 @@
     }
     .brand-text {
       font-size: 1rem;
+      font-family: 'the-seasons', serif;
+      font-weight: 400;
     }
   }
   
@@ -290,6 +298,8 @@
     }
     .brand-text {
       font-size: 0.9rem;
+      font-family: 'the-seasons', serif;
+      font-weight: 400;
     }
     .mobile-menu-content {
       min-width: 260px;

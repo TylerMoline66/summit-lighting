@@ -14,6 +14,8 @@ const { title = "My Website" } = Astro.props;
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://use.typekit.net" />
+    <link rel="stylesheet" href="https://use.typekit.net/jbr7iqa.css">
     <link rel="stylesheet" href="/global.css" />
   </head>
   <body>
@@ -22,6 +24,22 @@ const { title = "My Website" } = Astro.props;
       <slot /> <!-- Page content goes here -->
     </main>
     <Footer />
+    
+    <!-- Early Bird Special Bubble -->
+    <div id="earlyBirdBubble" class="early-bird-bubble" onclick="toggleEarlyBirdMessage()">
+      <div class="bubble-text">Save 15%</div>
+      <div class="bubble-pulse"></div>
+    </div>
+    
+    <!-- Early Bird Message -->
+    <div id="earlyBirdMessage" class="early-bird-message">
+      <div class="message-content">
+        <h3>🎄 November Special!</h3>
+        <p>Book your installation in November and save 15%!</p>
+        <a href="/contact" class="btn btn-primary">Get Started</a>
+        <button onclick="closeEarlyBirdMessage()" class="close-btn">×</button>
+      </div>
+    </div>
   </body>
 </html>
 
@@ -191,5 +209,240 @@ const { title = "My Website" } = Astro.props;
       faqItem.classList.add('active');
     }
   };
+
+  // Early Bird Bubble Functions
+  window.toggleEarlyBirdMessage = function() {
+    const message = document.getElementById('earlyBirdMessage');
+    const bubble = document.getElementById('earlyBirdBubble');
+    
+    if (message.classList.contains('active')) {
+      message.classList.remove('active');
+      bubble.classList.remove('active');
+    } else {
+      message.classList.add('active');
+      bubble.classList.add('active');
+    }
+  };
+
+  window.closeEarlyBirdMessage = function() {
+    const message = document.getElementById('earlyBirdMessage');
+    const bubble = document.getElementById('earlyBirdBubble');
+    
+    message.classList.remove('active');
+    bubble.classList.remove('active');
+  };
 </script>
+
+<style>
+  /* Early Bird Bubble */
+  .early-bird-bubble {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 130px;
+    height: 70px;
+    background: linear-gradient(135deg, var(--warm-amber-glow), #ffd700);
+    border-radius: 35px;
+    box-shadow: 0 8px 32px rgba(201, 162, 74, 0.5), 0 4px 16px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    animation: bounce 2s ease-in-out infinite, glow 2s ease-in-out infinite;
+    transition: transform 0.3s ease;
+    padding: 0 12px;
+  }
+
+  .early-bird-bubble:hover {
+    transform: scale(1.05);
+  }
+
+  .early-bird-bubble:active {
+    transform: scale(0.95);
+  }
+
+  .bubble-text {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--midnight-summit-navy);
+    white-space: nowrap;
+    line-height: 1;
+    z-index: 2;
+    position: relative;
+  }
+
+  .bubble-pulse {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: rgba(255, 215, 0, 0.4);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  .early-bird-bubble.active {
+    animation: bounce 0.3s ease-in-out, glow 2s ease-in-out infinite;
+  }
+
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  @keyframes glow {
+    0%, 100% {
+      box-shadow: 0 8px 32px rgba(201, 162, 74, 0.5), 0 4px 16px rgba(0, 0, 0, 0.3);
+    }
+    50% {
+      box-shadow: 0 8px 40px rgba(201, 162, 74, 0.8), 0 4px 20px rgba(0, 0, 0, 0.4);
+    }
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 0.4;
+    }
+    50% {
+      transform: scale(1.3);
+      opacity: 0;
+    }
+  }
+
+  /* Early Bird Message */
+  .early-bird-message {
+    position: fixed;
+    bottom: 130px;
+    right: 30px;
+    width: 320px;
+    background: linear-gradient(135deg, rgba(12, 26, 43, 0.98), rgba(26, 42, 58, 0.98));
+    border: 2px solid var(--warm-amber-glow);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.5), 0 4px 16px rgba(201, 162, 74, 0.3);
+    backdrop-filter: blur(10px);
+    z-index: 10000;
+    opacity: 0;
+    transform: translateY(20px) scale(0.9);
+    transition: all 0.3s ease;
+    pointer-events: none;
+    padding: 0;
+  }
+
+  .early-bird-message.active {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: all;
+  }
+
+  .message-content {
+    padding: var(--space-6);
+    position: relative;
+  }
+
+  .message-content h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: var(--space-3);
+    color: var(--warm-amber-glow);
+  }
+
+  .message-content p {
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin-bottom: var(--space-4);
+    font-size: 1rem;
+  }
+
+  .message-content .btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(201, 162, 74, 0.2);
+    border: none;
+    color: var(--warm-amber-glow);
+    font-size: 1.5rem;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    line-height: 1;
+  }
+
+  .close-btn:hover {
+    background: rgba(201, 162, 74, 0.4);
+    transform: scale(1.1);
+  }
+
+  /* Mobile Responsive */
+  @media (max-width: 768px) {
+    .early-bird-bubble {
+      width: 110px;
+      height: 60px;
+      bottom: 20px;
+      right: 20px;
+      padding: 0 10px;
+    }
+
+    .bubble-text {
+      font-size: 0.9rem;
+    }
+
+    .early-bird-message {
+      bottom: 100px;
+      right: 20px;
+      left: 20px;
+      width: auto;
+    }
+
+    .message-content {
+      padding: var(--space-5);
+    }
+
+    .message-content h3 {
+      font-size: 1.25rem;
+    }
+
+    .message-content p {
+      font-size: 0.9rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .early-bird-bubble {
+      width: 100px;
+      height: 60px;
+      bottom: 15px;
+      right: 15px;
+      padding: 0 8px;
+    }
+
+    .bubble-text {
+      font-size: 0.75rem;
+    }
+
+    .bubble-icon {
+      font-size: 1.2rem;
+    }
+
+    .early-bird-message {
+      bottom: 85px;
+      right: 10px;
+      left: 10px;
+    }
+  }
+</style>
 

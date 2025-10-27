@@ -5,7 +5,26 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   <section class="section container">
     <div class="section-head">
       <h1>Get in touch</h1>
-      <p class="muted">Have questions or want a free estimate? Reach out to us using the contact information below.</p>
+      <p class="muted">Schedule your free consultation or reach out to us using the contact information below.</p>
+    </div>
+
+    <!-- Calendly Booking -->
+    <div class="booking-container" style="margin-bottom: var(--space-8);">
+      <div class="surface" style="padding: var(--space-6); border: 2px solid var(--warm-amber-glow); border-radius: var(--radius-lg);">
+        <button class="booking-toggle" onclick="toggleBooking(this)">
+          <div>
+            <h2 style="margin: 0; color: var(--warm-amber-glow);">📅 Book Your Free Consultation</h2>
+            <p class="muted" style="margin: var(--space-2) 0 0 0;">Choose a time that works for you and let's discuss your holiday lighting vision!</p>
+          </div>
+          <span class="booking-icon">+</span>
+        </button>
+        <div class="booking-content">
+          <div style="display: flex; justify-content: center; width: 100%; padding-top: var(--space-4);">
+            <div class="calendly-inline-widget" data-url="https://calendly.com/jarrod-summitholidaylighting/christmas-light-estimate" style="width:100%;height:700px;"></div>
+          </div>
+          <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+        </div>
+      </div>
     </div>
 
     <!-- Contact Information Cards -->
@@ -181,4 +200,75 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     }
   });
 
+  // Booking toggle function
+  window.toggleBooking = function(button) {
+    const bookingContainer = button.closest('.booking-container');
+    const bookingContent = bookingContainer.querySelector('.booking-content');
+    const bookingIcon = bookingContainer.querySelector('.booking-icon');
+    
+    const isActive = bookingContainer.classList.contains('active');
+    
+    if (isActive) {
+      bookingContainer.classList.remove('active');
+      bookingIcon.textContent = '+';
+    } else {
+      bookingContainer.classList.add('active');
+      bookingIcon.textContent = '−';
+    }
+  };
+
 </script>
+
+<style>
+  /* Booking Collapsible Styles */
+  .booking-toggle {
+    width: 100%;
+    background: transparent;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+    transition: all 0.3s ease;
+  }
+
+  .booking-toggle:hover {
+    opacity: 0.9;
+  }
+
+  .booking-toggle:active {
+    transform: translateY(1px);
+  }
+
+  .booking-icon {
+    font-size: 2rem;
+    font-weight: 300;
+    transition: transform 0.3s ease;
+    color: var(--warm-amber-glow);
+    min-width: 32px;
+    text-align: center;
+    line-height: 1;
+  }
+
+  .booking-container.active .booking-icon {
+    transform: rotate(45deg);
+  }
+
+  .booking-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  .booking-container.active .booking-content {
+    max-height: 2000px;
+  }
+
+  @media (max-width: 768px) {
+    .booking-icon {
+      font-size: 1.75rem;
+    }
+  }
+</style>
