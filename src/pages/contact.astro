@@ -27,29 +27,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       </div>
     </div>
 
-    <!-- Contact Information Cards -->
-    <div class="contact-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--space-5); margin-bottom: var(--space-8);">
-      <div class="surface" style="padding: var(--space-6); text-align: center;">
-        <h3 style="color: var(--color-brand); margin-bottom: var(--space-3);">📞 Phone</h3>
-        <p class="muted" style="margin-bottom: var(--space-3);">Call for immediate assistance</p>
-        <a href="tel:+1-780-995-9653" style="color: var(--color-text); text-decoration: none; font-weight: 600; font-size: 1.1rem;">+1 (780) 995-9653</a>
-      </div>
-      
-      <div class="surface" style="padding: var(--space-6); text-align: center;">
-        <h3 style="color: var(--color-brand); margin-bottom: var(--space-3);">📧 Email</h3>
-        <p class="muted" style="margin-bottom: var(--space-3);">Send us a detailed message</p>
-        <a href="mailto:jarrod@summitholidaylighting.ca" style="color: var(--color-text); text-decoration: none; font-weight: 600; font-size: 1.1rem;">jarrod@summitholidaylighting.ca</a>
-      </div>
-      
-      <div class="surface" style="padding: var(--space-6); text-align: center;">
-        <h3 style="color: var(--color-brand); margin-bottom: var(--space-3);">⏰ Response Time</h3>
-        <p class="muted" style="margin-bottom: var(--space-3);">We typically respond within</p>
-        <span style="color: var(--color-text); font-weight: 600; font-size: 1.1rem;">24 hours</span>
-      </div>
-    </div>
-
     <!-- Contact Form (Static) -->
-    <div class="form">
+    <div class="form" style="margin-bottom: var(--space-8);">
       <div class="form-card">
         <h3 style="margin-bottom: var(--space-5); text-align: center;">Get your free custom estimate</h3>
         <p class="muted" style="text-align: center; margin-bottom: var(--space-4);">Your estimate is 100% free and comes with no obligation.</p>
@@ -89,6 +68,27 @@ import BaseLayout from "../layouts/BaseLayout.astro";
             <button type="submit" class="btn btn-primary">📧 Send Message</button>
           </div>
         </form>
+      </div>
+    </div>
+
+    <!-- Contact Information Cards -->
+    <div class="contact-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--space-5); margin-bottom: var(--space-8);">
+      <div class="surface" style="padding: var(--space-6); text-align: center;">
+        <h3 style="color: var(--color-brand); margin-bottom: var(--space-3);">📞 Phone</h3>
+        <p class="muted" style="margin-bottom: var(--space-3);">Call for immediate assistance</p>
+        <a href="tel:+1-780-995-9653" style="color: var(--color-text); text-decoration: none; font-weight: 600; font-size: 1.1rem;">+1 (780) 995-9653</a>
+      </div>
+      
+      <div class="surface" style="padding: var(--space-6); text-align: center;">
+        <h3 style="color: var(--color-brand); margin-bottom: var(--space-3);">📧 Email</h3>
+        <p class="muted" style="margin-bottom: var(--space-3);">Send us a detailed message</p>
+        <a href="mailto:jarrod@summitholidaylighting.ca" style="color: var(--color-text); text-decoration: none; font-weight: 600; font-size: 1.1rem;">jarrod@summitholidaylighting.ca</a>
+      </div>
+      
+      <div class="surface" style="padding: var(--space-6); text-align: center;">
+        <h3 style="color: var(--color-brand); margin-bottom: var(--space-3);">⏰ Response Time</h3>
+        <p class="muted" style="margin-bottom: var(--space-3);">We typically respond within</p>
+        <span style="color: var(--color-text); font-weight: 600; font-size: 1.1rem;">24 hours</span>
       </div>
     </div>
   </section>
