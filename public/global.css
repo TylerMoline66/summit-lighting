@@ -2087,3 +2087,25 @@ body {
     font-size: 0.85rem;
   }
 }
+
+/* Email card responsive styles */
+@media (max-width: 768px) {
+  .email-card {
+    padding: var(--space-4) !important;
+  }
+  
+  .email-link {
+    font-size: 0.95rem !important;
+    word-break: break-all;
+  }
+}
+
+@media (max-width: 480px) {
+  .email-card {
+    padding: var(--space-3) !important;
+  }
+  
+  .email-link {
+    font-size: 0.85rem !important;
+  }
+}
